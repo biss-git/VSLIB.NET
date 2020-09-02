@@ -13,6 +13,20 @@ vslibは音声波形に対して、ピッチシフト、フォルマントシフ
 ほとんど、Ackie様のvslibの説明になってしまいましたが、VSLIB.NETはC#からvslibを呼び出せるラッバーです。  
 音声の信号処理にご興味のある方は、是非お試しください。  
 
+## 使い方
+
+### １．vslib.dllの入手
+本リポジトリに含まれるvslib.dllはダミーのテキストファイルなので、
+本物のライブラリはAckie Sound様から入手して、「VSLIB.NET/vslib.dll」と「VSLIB.NET/vslib_x64.dll」を置き換えてください。  
+
+[Ackie Sound 倉庫](http://ackiesound.ifdef.jp/soko.html)
+
+### ２．Visual Studio からサンプルの起動
+VocalShifterLibraryTest.sln をVisual Studioで開いて実行すればサンプルプログラムが起動します。  
+
+### ３．他のソリューションからの呼び出し
+VSLIB.NETプロジェクトをそのまま他のソリューションに読み込むか、ビルドされたVSLIB.NET.dllを参照に追加するなどしてご利用ください。
+
 ## 主要ファイル説明
 
 
