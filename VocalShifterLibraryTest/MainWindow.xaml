@@ -1,0 +1,75 @@
+﻿<Window x:Class="VocalShifterLibraryTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VocalShifterLibraryTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1010">
+    <DockPanel>
+        <Label x:Name="outputLabel" FontSize="20" Content="出力" DockPanel.Dock="Bottom"/>
+        <ScrollViewer DockPanel.Dock="Right" Width="300">
+            <TextBlock x:Name="projectTextBox" Text="プロジェクトの状態" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" Width="300"/>
+        </ScrollViewer>
+        <TabControl x:Name="tabControl">
+            <TabItem Header="ライブラリ関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Content="バージョンの取得" Click="GetVersion" HorizontalAlignment="Left" Height="42" Margin="36,21,0,0" VerticalAlignment="Top" Width="104"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="プロジェクト関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="CreateProject" Content="プロジェクトの新規作成" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="OpenProject"  Content="プロジェクトを開く" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="SaveProject"  Content="プロジェクトを保存" HorizontalAlignment="Left" Margin="233,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="DeleteProject"  Content="プロジェクトを破棄" HorizontalAlignment="Left" Margin="39,237,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="SetProjectInfo"  Content="プロジェクト情報を設定" HorizontalAlignment="Left" Margin="233,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="トラック関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="AddTrack" Content="トラックの追加" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="CopyTrack"  Content="トラックのコピー" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="UpTrack"  Content="トラックを上に移動" HorizontalAlignment="Left" Margin="39,170,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="DownTrack"  Content="トラックを下に移動" HorizontalAlignment="Left" Margin="233,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="DeleteTrack"  Content="トラックの削除" HorizontalAlignment="Left" Margin="233,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="SetTrackInfo"  Content="トラック情報の設定" HorizontalAlignment="Left" Margin="233,170,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="アイテム関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="AddItem" Content="アイテムを追加" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="CopyItem"  Content="アイテムをコピー" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="DeleteItem"  Content="アイテムを削除" HorizontalAlignment="Left" Margin="39,170,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TIME関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="AddTimeCtrl" Content="タイミング制御点を追加" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="DeleteTimeCtrl"  Content="タイミング制御点を破棄" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ミキサー関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="GetMixData" Content="ミックス後の波形を取得" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="ExportWaveFile"  Content="音声ファイルを保存" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="単位変換関連">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="ConvertCentToHz" Content="cent → Hz" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="ConvertHzToCent"  Content="Hz → cent" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="プロジェクトマージ">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="SelectProject1" Content="１つ目のプロジェクトを選択" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Label x:Name="ProjectName1" Content="ファイル名１" HorizontalAlignment="Left" Margin="200,35,0,0" VerticalAlignment="Top" Width="370" Height="53"/>
+                    <Button Click="SelectProject2"  Content="２つ目のプロジェクトを選択" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Label x:Name="ProjectName2" Content="ファイル名２" HorizontalAlignment="Left" Margin="200,102,0,0" VerticalAlignment="Top" Width="370" Height="53"/>
+                    <Button Click="MargeProject"  Content="プロジェクトマージ" HorizontalAlignment="Left" Margin="39,170,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
