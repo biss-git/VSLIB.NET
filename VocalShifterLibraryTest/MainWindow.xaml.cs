@@ -313,7 +313,7 @@ namespace VocalShifterLibraryTest
             if (project == null) { NoProjectError(); return; }
             (int time11, int time12) = project.ItemList[0].TimeCtrlPoints[0].GetInfo();
             (int time21, int time22) = project.ItemList[0].TimeCtrlPoints[1].GetInfo();
-            project.ItemList[0].TimeCtrlPoints.Add((time11+time21)/2, (time12 + time22) / 2 + 1);
+            project.ItemList[0].TimeCtrlPoints.Add((time11 + time21) / 2, (time12 + time22) / 2 + 1);
             outputLabel.Content = "タイム制御点を追加しました。error_code=" + project?.LastErrorCode;
             ShowProjectStatus();
         }
@@ -444,7 +444,7 @@ namespace VocalShifterLibraryTest
         private void MargeProject(object sender, RoutedEventArgs e)
         {
             VSProject project1 = new VSProject((string)ProjectName1.Content);
-            if(project1.LastErrorCode != 0)
+            if (project1.LastErrorCode != 0)
             {
                 outputLabel.Content = "１つ目のプロジェクトが不正です。error_code=" + project?.LastErrorCode;
                 return;
@@ -455,7 +455,7 @@ namespace VocalShifterLibraryTest
                 outputLabel.Content = "２つ目のプロジェクトが不正です。error_code=" + project?.LastErrorCode;
                 return;
             }
-            if(project1.TrackList.Length + project2.TrackList.Length > Const.VSLIB_MAX_TRACK)
+            if (project1.TrackList.Length + project2.TrackList.Length > Const.VSLIB_MAX_TRACK)
             {
                 outputLabel.Content = "合計トラック数が多すぎます。";
                 return;
@@ -476,7 +476,7 @@ namespace VocalShifterLibraryTest
             }
             projectMarged.sampFreq = project1.sampFreq;
 
-            for(int i = 0; i < project1.TrackList.Length; i++)
+            for (int i = 0; i < project1.TrackList.Length; i++)
             {
                 projectMarged.TrackList.Add(project1.TrackList[i]);
             }
@@ -498,6 +498,72 @@ namespace VocalShifterLibraryTest
             }
 
         }
+
+
+
+        /**
+         * 
+         * 　パラメータ操作
+         * 
+         */
+
+        /// <summary>
+        /// ピッチを半分にする
+        /// </summary>
+        private void HalfPitch(object sender, RoutedEventArgs e)
+        {
+            if (project == null) { NoProjectError(); return; }
+            for (int i = 0; i < project.ItemList.Length; i++)
+            {
+                Item item = project.ItemList[i];
+                CtrlPointList ctrlPoints = item.CtrlPoints;
+                for (int j = 0; j < ctrlPoints.Length; j++)
+                {
+                    CtrlPoint point = item.CtrlPoints[j];
+                    point.PitEdit = point.PitOrg - 1200;   // 1200cent で１オクターブ(周波数は半分)
+                }
+            }
+            outputLabel.Content = "ピッチを半分にしました。error_code=" + project.LastErrorCode;
+        }
+
+        /// <summary>
+        /// 音量を半分にする
+        /// </summary>
+        private void HalfDYN(object sender, RoutedEventArgs e)
+        {
+            if (project == null) { NoProjectError(); return; }
+            for (int i = 0; i < project.ItemList.Length; i++)
+            {
+                Item item = project.ItemList[i];
+                CtrlPointList ctrlPoints = item.CtrlPoints;
+                for (int j = 0; j < ctrlPoints.Length; j++)
+                {
+                    CtrlPoint point = item.CtrlPoints[j];
+                    point.DynEdit = point.DynOrg / 2;   // 音量を半分
+                }
+            }
+            outputLabel.Content = "音量を半分にしました。error_code=" + project.LastErrorCode;
+        }
+
+        /// <summary>
+        /// フォルマントを100セント下げる
+        /// </summary>
+        private void M100centFormant(object sender, RoutedEventArgs e)
+        {
+            if (project == null) { NoProjectError(); return; }
+            for (int i = 0; i < project.ItemList.Length; i++)
+            {
+                Item item = project.ItemList[i];
+                CtrlPointList ctrlPoints = item.CtrlPoints;
+                for (int j = 0; j < ctrlPoints.Length; j++)
+                {
+                    CtrlPoint point = item.CtrlPoints[j];
+                    point.Formant = -100;
+                }
+            }
+            outputLabel.Content = "フォルマントを-100centにしました。error_code=" + project.LastErrorCode;
+        }
+
 
     }
 }

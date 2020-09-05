@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VocalShifterLibraryTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1010">
+        Title="MainWindow" Height="450" Width="1115">
     <DockPanel>
         <Label x:Name="outputLabel" FontSize="20" Content="出力" DockPanel.Dock="Bottom"/>
         <ScrollViewer DockPanel.Dock="Right" Width="300">
@@ -68,6 +68,13 @@
                     <Button Click="SelectProject2"  Content="２つ目のプロジェクトを選択" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
                     <Label x:Name="ProjectName2" Content="ファイル名２" HorizontalAlignment="Left" Margin="200,102,0,0" VerticalAlignment="Top" Width="370" Height="53"/>
                     <Button Click="MargeProject"  Content="プロジェクトマージ" HorizontalAlignment="Left" Margin="39,170,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="パラメータ操作">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="HalfPitch" Content="ピッチを半分" HorizontalAlignment="Left" Margin="39,35,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="HalfDYN"  Content="音量を半分" HorizontalAlignment="Left" Margin="39,102,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
+                    <Button Click="M100centFormant"  Content="フォルマントを100cent下げる" HorizontalAlignment="Left" Margin="39,170,0,0" VerticalAlignment="Top" Width="132" Height="53"/>
                 </Grid>
             </TabItem>
         </TabControl>
