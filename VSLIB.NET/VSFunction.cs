@@ -22,6 +22,10 @@ namespace VSLIB.NET
         static extern int VslibGetVersion_64bit();
         [DllImport("vslib.dll", EntryPoint = "VslibGetVersion")]
         static extern int VslibGetVersion_32bit();
+        /// <summary>
+        /// バージョン番号の取得
+        /// </summary>
+        /// <returns>151 なら ver 1.51 の意味</returns>
         public static int VslibGetVersion()
         {
             return (Environment.Is64BitProcess) ?

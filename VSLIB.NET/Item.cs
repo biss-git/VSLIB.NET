@@ -4,10 +4,13 @@ using System.Text;
 
 namespace VSLIB.NET
 {
+    /// <summary>
+    /// アイテム
+    /// </summary>
     public class Item
     {
         /// <summary>
-        /// このトラックが属しているプロジェクト
+        /// 親プロジェクト
         /// </summary>
         public readonly VSProject Project;
 
@@ -22,10 +25,15 @@ namespace VSLIB.NET
         public readonly TimeCtrlPointList TimeCtrlPoints;
 
         /// <summary>
-        /// トラック番号
+        /// アイテム番号
         /// </summary>
         public readonly int Index;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="project">親プロジェクト</param>
+        /// <param name="index">アイテム番号</param>
         public Item(VSProject project, int index)
         {
             this.Project = project;
@@ -35,13 +43,18 @@ namespace VSLIB.NET
         }
 
         /// <summary>
-        /// 破棄する
+        /// アイテムの破棄
         /// </summary>
         public void Dispose()
         {
             Project.LastErrorCode = VSFunction.VslibDeleteItem(Project.hVsprj, Index);
         }
 
+        /// <summary>
+        /// イコライザ情報の取得
+        /// </summary>
+        /// <param name="eqNum">イコライザ番号(0または1)</param>
+        /// <returns>イコライザ情報</returns>
         public int[] GetEQGain(int eqNum)
         {
             int[] gain = new int[15];
@@ -49,30 +62,55 @@ namespace VSLIB.NET
             return gain;
         }
 
+        /// <summary>
+        /// イコライザ情報の設定
+        /// </summary>
+        /// <param name="eqNum">イコライザ番号(0または1)</param>
+        /// <param name="gain">イコライザ情報</param>
         public void SetEQGain(int eqNum, int[] gain)
         {
             Project.LastErrorCode = VSFunction.VslibSetEQGain(Project.hVsprj, Index, eqNum, gain);
         }
 
-        public double GetTimeOrg_Sec(double timeEdt)
+        /// <summary>
+        /// タイムストレッチ前時間を取得[秒]
+        /// </summary>
+        /// <param name="timeEdt_Sec">タイムストレッチ後時間[秒]</param>
+        /// <returns>タイムストレッチ前時間[秒]</returns>
+        public double GetTimeOrg_Sec(double timeEdt_Sec)
         {
-            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSec(Project.hVsprj, Index, timeEdt, out double timeOrg);
-            return timeOrg;
+            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSec(Project.hVsprj, Index, timeEdt_Sec, out double timeOrg_Sec);
+            return timeOrg_Sec;
         }
-        public double GetTimeEdt_Sec(double timeOrg)
+        /// <summary>
+        /// タイムストレッチ後時間を取得[秒]
+        /// </summary>
+        /// <param name="timeOrg_Sec">タイムストレッチ前時間[秒]</param>
+        /// <returns>タイムストレッチ後時間[秒]</returns>
+        public double GetTimeEdt_Sec(double timeOrg_Sec)
         {
-            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSec(Project.hVsprj, Index, timeOrg, out double timeEdt);
-            return timeEdt;
+            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSec(Project.hVsprj, Index, timeOrg_Sec, out double timeEdt_Sec);
+            return timeEdt_Sec;
         }
-        public double GetTimeOrg_Sample(double timeEdt)
+        /// <summary>
+        /// タイムストレッチ前時間を取得[サンプル]
+        /// </summary>
+        /// <param name="timeEdt_Sample">タイムストレッチ後時間[サンプル]</param>
+        /// <returns>タイムストレッチ前時間[サンプル]</returns>
+        public double GetTimeOrg_Sample(double timeEdt_Sample)
         {
-            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSample(Project.hVsprj, Index, timeEdt, out double timeOrg);
-            return timeOrg;
+            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSample(Project.hVsprj, Index, timeEdt_Sample, out double timeOrg_Sample);
+            return timeOrg_Sample;
         }
-        public double GetTimeEdt_Sample(double timeOrg)
+        /// <summary>
+        /// タイムストレッチ後時間を取得[サンプル]
+        /// </summary>
+        /// <param name="timeOrg_Sample">タイムストレッチ前時間[サンプル]</param>
+        /// <returns>タイムストレッチ後時間[サンプル]</returns>
+        public double GetTimeEdt_Sample(double timeOrg_Sample)
         {
-            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSample(Project.hVsprj, Index, timeOrg, out double timeEdt);
-            return timeEdt;
+            Project.LastErrorCode = VSFunction.VslibGetStretchOrgSample(Project.hVsprj, Index, timeOrg_Sample, out double timeEdt_Sample);
+            return timeEdt_Sample;
         }
 
         /// <summary>
@@ -169,20 +207,20 @@ namespace VSLIB.NET
         }
 
         /// <summary>
-        /// (R/W)音声合成方式(M:0,MF:1,P:2)
+        /// (R/W)音声合成方式
         /// </summary>
-        public int SynthMode
+        public SYNTHMODE SynthMode
         {
             get
             {
-                return Info.synthMode;
+                return (SYNTHMODE)Info.synthMode;
             }
             set
             {
                 VSITEMINFO info = this.Info;
                 if (Project.LastErrorCode == 0)
                 {
-                    info.synthMode = value;
+                    info.synthMode = (int)value;
                     this.Info = info;
                 }
             }

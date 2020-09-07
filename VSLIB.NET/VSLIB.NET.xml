@@ -1,0 +1,965 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VSLIB.NET</name>
+    </assembly>
+    <members>
+        <member name="T:VSLIB.NET.Const">
+            <summary>
+            vslibに利用される定数
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Const.VSLIB_MAX_PATH">
+            <summary>
+            ファイル名の最大長　256文字
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Const.VSLIB_MAX_TRACK">
+            <summary>
+            トラックの最大数　64
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Const.VSLIB_MAX_ITEM">
+            <summary>
+            トラックの最大数　1024
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.ERROR_CODE">
+            <summary>
+            エラーコード
+            VSProjectの
+            LastErrorCodeに対応する
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_NOERR">
+            <summary>
+            エラーなし　0
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_PRM">
+            <summary>
+            パラメータ不正　1
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_PRJOPEN">
+            <summary>
+            PRJファイルオープンに失敗　2
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_PRJFORMAT">
+            <summary>
+            PRJファイルフォーマット不正　3
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_WAVEOPEN">
+            <summary>
+            WAVファイルオープンに失敗　4
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_WAVEFORMAT">
+            <summary>
+            WAVファイルフォーマット不正　5
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_FREQ">
+            <summary>
+            サンプリング周波数不正　6
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_MAX">
+            <summary>
+            最大数制限　7
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ERROR_CODE.VSERR_NOMEM">
+            <summary>
+            メモリ不足　8
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.SYNTHMODE">
+            <summary>
+            合成のモード
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.SYNTHMODE.SYNTHMODE_M">
+            <summary>
+            単音　0
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.SYNTHMODE.SYNTHMODE_MF">
+            <summary>
+            単音フォルマント補正　0
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.SYNTHMODE.SYNTHMODE_P">
+            <summary>
+            和音　0
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.CtrlPoint">
+            <summary>
+            制御点
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.CtrlPoint.Item">
+            <summary>
+            親アイテム
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.CtrlPoint.Index">
+            <summary>
+            制御点番号
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.CtrlPoint.#ctor(VSLIB.NET.Item,System.Int32)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="item">制御点の親アイテム</param>
+            <param name="index">制御点番号</param>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Info">
+            <summary>
+            制御点情報
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.DynOrg">
+            <summary>
+            (R/-)編集前ダイナミクス[倍]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.DynEdit">
+            <summary>
+            (R/W)編集後ダイナミクス[倍]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Volume">
+            <summary>
+            (R/W)ボリューム[倍]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Pan">
+            <summary>
+            (R/W)パン(-1.0~1.0)
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.SpecDyn">
+            <summary>
+            (R/-)スペクトルダイナミクス
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.PitAna">
+            <summary>
+            (R/-)ピッチ解析値[cent,C4=6000]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.PitOrg">
+            <summary>
+            (R/W)ピッチ編集前[cent,C4=6000]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.PitEdit">
+            <summary>
+            (R/W)ピッチ編集後[cent,C4=6000]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Formant">
+            <summary>
+            (R/W)フォルマント[cent]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.PitFlagOrg">
+            <summary>
+            (R/-)編集前ピッチ有無フラグ
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.PitFlgEdit">
+            <summary>
+            (R/W)編集後ピッチ有無フラグ
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Breathiness">
+            <summary>
+            (R/W)ブレ市ネス[-10000~10000]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Eq1">
+            <summary>
+            (R/W)EQ1[-10000~10000]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPoint.Eq2">
+            <summary>
+            (R/W)EQ2[-10000~10000]
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.CtrlPointList">
+            <summary>
+            制御点の配列
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.CtrlPointList.item">
+            <summary>
+            親アイテム
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPointList.Item(System.Int32)">
+            <summary>
+            制御点にアクセスするためのインデクサー
+            newするのでやや非効率な点に注意
+            </summary>
+            <param name="index">制御点番号</param>
+            <returns>制御点</returns>
+        </member>
+        <member name="M:VSLIB.NET.CtrlPointList.#ctor(VSLIB.NET.Item)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="item">親アイテム</param>
+        </member>
+        <member name="P:VSLIB.NET.CtrlPointList.Length">
+            <summary>
+            制御点の数
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.Item">
+            <summary>
+            アイテム
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Item.Project">
+            <summary>
+            親プロジェクト
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Item.CtrlPoints">
+            <summary>
+            制御点
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Item.TimeCtrlPoints">
+            <summary>
+            タイミング制御点
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Item.Index">
+            <summary>
+            アイテム番号
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.Item.#ctor(VSLIB.NET.VSProject,System.Int32)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="project">親プロジェクト</param>
+            <param name="index">アイテム番号</param>
+        </member>
+        <member name="M:VSLIB.NET.Item.Dispose">
+            <summary>
+            アイテムの破棄
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.Item.GetEQGain(System.Int32)">
+            <summary>
+            イコライザ情報の取得
+            </summary>
+            <param name="eqNum">イコライザ番号(0または1)</param>
+            <returns>イコライザ情報</returns>
+        </member>
+        <member name="M:VSLIB.NET.Item.SetEQGain(System.Int32,System.Int32[])">
+            <summary>
+            イコライザ情報の設定
+            </summary>
+            <param name="eqNum">イコライザ番号(0または1)</param>
+            <param name="gain">イコライザ情報</param>
+        </member>
+        <member name="M:VSLIB.NET.Item.GetTimeOrg_Sec(System.Double)">
+            <summary>
+            タイムストレッチ前時間を取得[秒]
+            </summary>
+            <param name="timeEdt_Sec">タイムストレッチ後時間[秒]</param>
+            <returns>タイムストレッチ前時間[秒]</returns>
+        </member>
+        <member name="M:VSLIB.NET.Item.GetTimeEdt_Sec(System.Double)">
+            <summary>
+            タイムストレッチ後時間を取得[秒]
+            </summary>
+            <param name="timeOrg_Sec">タイムストレッチ前時間[秒]</param>
+            <returns>タイムストレッチ後時間[秒]</returns>
+        </member>
+        <member name="M:VSLIB.NET.Item.GetTimeOrg_Sample(System.Double)">
+            <summary>
+            タイムストレッチ前時間を取得[サンプル]
+            </summary>
+            <param name="timeEdt_Sample">タイムストレッチ後時間[サンプル]</param>
+            <returns>タイムストレッチ前時間[サンプル]</returns>
+        </member>
+        <member name="M:VSLIB.NET.Item.GetTimeEdt_Sample(System.Double)">
+            <summary>
+            タイムストレッチ後時間を取得[サンプル]
+            </summary>
+            <param name="timeOrg_Sample">タイムストレッチ前時間[サンプル]</param>
+            <returns>タイムストレッチ後時間[サンプル]</returns>
+        </member>
+        <member name="P:VSLIB.NET.Item.Info">
+            <summary>
+            アイテム情報
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.FileName">
+            <summary>
+            (R/-) ファイル名
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.SampleFreq">
+            <summary>
+            (R/-)サンプリング周波数[Hz]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.Channel">
+            <summary>
+            (R/-)チャンネル数(1or2)
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.SampleOrg">
+            <summary>
+            (R/-)オリジナルの音声ファイルのサンプル数
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.SampleEdit">
+            <summary>
+            (R/-)編集後のサンプル数
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.CtrlPntPs">
+            <summary>
+            (R/-)１秒あたりの制御点数
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.CtrlPntNum">
+            <summary>
+            (R/-)全制御点数
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.SynthMode">
+            <summary>
+            (R/W)音声合成方式
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.TrackNum">
+            <summary>
+            (R/W)トラック番号(0~)
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Item.Offset">
+            <summary>
+            (R/W)オフセット[sample]
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.ItemList">
+            <summary>
+            アイテムの配列
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ItemList.project">
+            <summary>
+            親プロジェクト
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.ItemList.Items">
+            <summary>
+            アイテムの配列
+            最大数が固定なので最初に作ってしまう
+            プライベートな配列なので必要ないが、一応完全なreadonly属性にしておく
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.ItemList.Item(System.Int32)">
+            <summary>
+            アイテムにアクセスするためのインデクサー
+            </summary>
+            <param name="index">アイテム番号</param>
+            <returns>アイテム</returns>
+        </member>
+        <member name="M:VSLIB.NET.ItemList.#ctor(VSLIB.NET.VSProject)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="project">親プロジェクト</param>
+        </member>
+        <member name="P:VSLIB.NET.ItemList.Length">
+            <summary>
+            アイテムの数
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.ItemList.Add(System.String)">
+            <summary>
+            アイテムの追加
+            </summary>
+            <param name="fileName">音声ファイルのパス</param>
+            <returns>追加されたアイテムの番号</returns>
+        </member>
+        <member name="M:VSLIB.NET.ItemList.Add(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            アイテムの追加
+            </summary>
+            <param name="fileName">音声ファイルのパス</param>
+            <param name="nnOffset">解析する最低音のノートナンバー(C4=60)</param>
+            <param name="nnRange">解析する音階の範囲[半音](つまり12で１オクターブ)</param>
+            <param name="skipPitFlg">ピッチ解析無効フラグ</param>
+            <returns>追加されたアイテムの番号</returns>
+        </member>
+        <member name="M:VSLIB.NET.ItemList.Add(VSLIB.NET.Item)">
+            <summary>
+            アイテムの追加（コピー）
+            </summary>
+            <param name="itemSrc">コピー元のアイテム</param>
+            <returns>追加されたアイテムの番号</returns>
+        </member>
+        <member name="M:VSLIB.NET.ItemList.Clear">
+            <summary>
+            アイテムをすべて破棄
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.VSPRJINFO">
+            
+            　VocalShifterライブラリの構造体をここにまとめておく
+            
+            <summary>
+            プロジェクト情報
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSPRJINFO.MasterVolume">
+            <summary>
+            (R/W)マスターボリューム[倍]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSPRJINFO.SampFreq">
+            <summary>
+            (R/W)サンプリング周波数[Hz]
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.VSTRACKINFO">
+            <summary>
+            トラック情報
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSTRACKINFO.volume">
+            <summary>
+            (R/W)ボリューム[倍]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSTRACKINFO.pan">
+            <summary>
+            (R/W)パン(-1.0~1.0)
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSTRACKINFO.invPhaseFlg">
+            <summary>
+            (R/W)逆相フラグ
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSTRACKINFO.soloFlg">
+            <summary>
+            (R/W)ソロフラグ
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSTRACKINFO.muteFlg">
+            <summary>
+            (R/W)ミュートフラグ
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.VSITEMINFO">
+            <summary>
+            アイテム情報
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.fileName">
+            <summary>
+            (R/-) ファイル名
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.sampFreq">
+            <summary>
+            (R/-)サンプリング周波数[Hz]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.channel">
+            <summary>
+            (R/-)チャンネル数(1or2)
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.sampleOrg">
+            <summary>
+            (R/-)オリジナルの音声ファイルのサンプル数
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.sampleEdit">
+            <summary>
+            (R/-)編集後のサンプル数
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.ctrlPntPs">
+            <summary>
+            (R/-)１秒あたりの制御点数
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.ctrlPntNum">
+            <summary>
+            (R/-)全制御点数
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.synthMode">
+            <summary>
+            (R/W)音声合成方式(M:0,MF:1,P:2)
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.trackNum">
+            <summary>
+            (R/W)トラック番号(0~)
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSITEMINFO.offset">
+            <summary>
+            (R/W)オフセット[sample]
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.VSCPINFOEX">
+            <summary>
+            アイテム制御点情報
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.dynOrg">
+            <summary>
+            (R/-)編集前ダイナミクス[倍]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.dynEdit">
+            <summary>
+            (R/W)編集後ダイナミクス[倍]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.volume">
+            <summary>
+            (R/W)ボリューム[倍]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.pan">
+            <summary>
+            (R/W)パン(-1.0~1.0)
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.spcDyn">
+            <summary>
+            (R/-)スペクトルダイナミクス
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.pitAna">
+            <summary>
+            (R/-)ピッチ解析値[cent,C4=6000]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.pitOrg">
+            <summary>
+            (R/W)ピッチ編集前[cent,C4=6000]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.pitEdit">
+            <summary>
+            (R/W)ピッチ編集後[cent,C4=6000]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.formant">
+            <summary>
+            (R/W)フォルマント[cent]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.pitFlgOrg">
+            <summary>
+            (R/-)編集前ピッチ有無フラグ
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.pitFlgEdit">
+            <summary>
+            (R/W)編集後ピッチ有無フラグ
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.breathiness">
+            <summary>
+            (R/W)ブレ市ネス[-10000~10000]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.eq1">
+            <summary>
+            (R/W)EQ1[-10000~10000]
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSCPINFOEX.eq2">
+            <summary>
+            (R/W)EQ2[-10000~10000]
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.TimeCtrlPoint">
+            <summary>
+            タイミング制御点
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.TimeCtrlPoint.Item">
+            <summary>
+            親アイテム
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.TimeCtrlPoint.Index">
+            <summary>
+            タイミング制御点番号
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.TimeCtrlPoint.#ctor(VSLIB.NET.Item,System.Int32)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="item">親アイテム</param>
+            <param name="index">タイミング制御点番号</param>
+        </member>
+        <member name="M:VSLIB.NET.TimeCtrlPoint.GetInfo">
+            <summary>
+            制御点情報の取得
+            </summary>
+            <returns>(編集前,編集後)タイミング[サンプル]</returns>
+        </member>
+        <member name="M:VSLIB.NET.TimeCtrlPoint.SetInfo(System.Int32,System.Int32)">
+            <summary>
+            制御点情報の設定
+            </summary>
+            <param name="time1">編集前タイミング[サンプル]</param>
+            <param name="time2">編集後タイミング[サンプル]</param>
+        </member>
+        <member name="M:VSLIB.NET.TimeCtrlPoint.Dispose">
+            <summary>
+            タイミング制御点の破棄
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.TimeCtrlPoint.time1">
+            <summary>
+            編集前タイミング[サンプル]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.TimeCtrlPoint.time2">
+            <summary>
+            編集後タイミング[サンプル]
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.TimeCtrlPointList">
+            <summary>
+            タイミング制御点の配列
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.TimeCtrlPointList.item">
+            <summary>
+            親アイテム
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.TimeCtrlPointList.Item(System.Int32)">
+            <summary>
+            タイミング制御点にアクセスするためのインデクサー
+            newしているのでやや非効率な点に注意
+            </summary>
+            <param name="index">タイミング制御点番号</param>
+            <returns>タイミング制御点</returns>
+        </member>
+        <member name="M:VSLIB.NET.TimeCtrlPointList.#ctor(VSLIB.NET.Item)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="item">親アイテム</param>
+        </member>
+        <member name="P:VSLIB.NET.TimeCtrlPointList.Length">
+            <summary>
+            タイミング制御点の数
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.TimeCtrlPointList.Add(System.Int32,System.Int32)">
+            <summary>
+            タイミング制御点の追加
+            </summary>
+            <param name="time1">編集前タイミング[サンプル]</param>
+            <param name="time2">編集後タイミング[サンプル]</param>
+        </member>
+        <member name="T:VSLIB.NET.Track">
+            <summary>
+            トラック
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Track.Project">
+            <summary>
+            親プロジェクト
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.Track.Index">
+            <summary>
+            トラック番号
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.Track.#ctor(VSLIB.NET.VSProject,System.Int32)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="project">親プロジェクト</param>
+            <param name="index">トラック番号</param>
+        </member>
+        <member name="M:VSLIB.NET.Track.Up">
+            <summary>
+            上に移動する
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.Track.Down">
+            <summary>
+            下に移動する
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.Track.Dispose">
+            <summary>
+            破棄する
+            トラック内のアイテムも破棄される
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Track.Info">
+            <summary>
+            トラック情報
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Track.Volume">
+            <summary>
+            (R/W)ボリューム[倍]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Track.Pan">
+            <summary>
+            (R/W)パン(-1.0~1.0)
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Track.InvPhaseFlg">
+            <summary>
+            (R/W)逆相フラグ
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Track.SoloFlg">
+            <summary>
+            (R/W)ソロフラグ
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.Track.MuteFlg">
+            <summary>
+            (R/W)ミュートフラグ
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.TrackList">
+            <summary>
+            トラックの配列
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.TrackList.project">
+            <summary>
+            親プロジェクト
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.TrackList.Tracks">
+            <summary>
+            トラックの配列
+            最大数が決まっているので最初に作ってしまう
+            プライベートな配列なので必要ないが、一応完全なreadonly属性にしておく
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.TrackList.Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VSLIB.NET.TrackList.#ctor(VSLIB.NET.VSProject)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="project">親プロジェクト</param>
+        </member>
+        <member name="P:VSLIB.NET.TrackList.Length">
+            <summary>
+            トラックの数
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.TrackList.Add">
+            <summary>
+            トラックの追加
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.TrackList.Add(VSLIB.NET.Track)">
+            <summary>
+            トラックの追加（コピー）
+            トラック内のアイテムも一緒にコピーされる
+            </summary>
+            <param name="trackSrc">コピー元のトラック</param>
+            <returns>追加されたトラック番号</returns>
+        </member>
+        <member name="M:VSLIB.NET.TrackList.Clear">
+            <summary>
+            トラックをすべて破棄
+            </summary>
+        </member>
+        <member name="T:VSLIB.NET.VSFunction">
+            <summary>
+            vslib.dllを呼び出すクラス
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetVersion_64bit">
+            
+            　ライブラリ関連
+            　
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetVersion">
+            <summary>
+            バージョン番号の取得
+            </summary>
+            <returns>151 なら ver 1.51 の意味</returns>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibCreateProject_64bit(System.IntPtr@)">
+            
+            　プロジェクト関連
+            　
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetTrackMaxNum_64bit(System.IntPtr,System.Int32@)">
+            
+            　トラック関連
+            
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetItemMaxNum_64bit(System.IntPtr,System.Int32@)">
+            
+            　アイテム関連
+            
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetEQGain_64bit(System.IntPtr,System.Int32,System.Int32,System.Int32[])">
+            <param name="eqNum">イコライザ番号</param>
+            <param name="gain">ゲインの値が格納される配列変数(15要素、0.1dB単位)</param>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibSetEQGain_64bit(System.IntPtr,System.Int32,System.Int32,System.Int32[])">
+            <param name="eqNum">イコライザ番号</param>
+            <param name="gain">ゲインの値が格納される配列変数(15要素、0.1dB単位)</param>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetTimeCtrlPntNum_64bit(System.IntPtr,System.Int32,System.Int32@)">
+            
+            　TIME関連
+            
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetStretchOrgSec_64bit(System.IntPtr,System.Int32,System.Double,System.Double@)">
+            <summary> 時間の単位は秒 </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetStretchEditSec_64bit(System.IntPtr,System.Int32,System.Double,System.Double@)">
+            <summary> 時間の単位は秒 </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetStretchOrgSample_64bit(System.IntPtr,System.Int32,System.Double,System.Double@)">
+            <summary> 時間の単位はサンプル数 </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetStretchEditSample_64bit(System.IntPtr,System.Int32,System.Double,System.Double@)">
+            <summary> 時間の単位はサンプル数 </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibGetMixSample_64bit(System.IntPtr,System.Int32@)">
+            
+            　ミキサー関連
+            
+        </member>
+        <member name="M:VSLIB.NET.VSFunction.VslibCent2Freq_64bit(System.Int32)">
+            
+            　単位変換関連
+            
+        </member>
+        <member name="T:VSLIB.NET.VSProject">
+            <summary>
+            VocalShifter プロジェクト
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSProject.LastErrorCode">
+            <summary>
+            最後に実行されたvslib関数のエラーコード
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSProject.hVsprj">
+            <summary>
+            プロジェクトハンドル
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSProject.TrackList">
+            <summary>
+            トラックのリスト
+            </summary>
+        </member>
+        <member name="F:VSLIB.NET.VSProject.ItemList">
+            <summary>
+            アイテムのリスト
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.#ctor">
+            <summary>
+            空のプロジェクト作成
+            空のトラックが一つ生成される
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.#ctor(System.String)">
+            <summary>
+            .vshpファイルを開く
+            </summary>
+            <param name="fileName">.vshpファイルのパス</param>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.init">
+            <summary>
+            初期化処理
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.Save(System.String)">
+            <summary>
+            プロジェクトの保存
+            </summary>
+            <param name="fileName">保存先ファイル名</param>
+        </member>
+        <member name="P:VSLIB.NET.VSProject.VsPrjInfo">
+            <summary>
+            プロジェクト情報
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.VSProject.MasterVolume">
+            <summary>
+            (R/W)マスターボリューム[倍]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.VSProject.SampFreq">
+            <summary>
+            (R/W)サンプリング周波数[Hz]
+            </summary>
+        </member>
+        <member name="P:VSLIB.NET.VSProject.MixSample">
+            <summary>
+            ミックス後サンプル数
+            </summary>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.ReadMixData(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            ミックス後の音声データ
+            </summary>
+            <param name="channel">チャンネル数(1または2)</param>
+            <param name="index">取得位置[サンプル]</param>
+            <param name="size">取得サイズ[サンプル]</param>
+            <returns></returns>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.ExportWaveFile(System.String,System.Int32)">
+            <summary>
+            ミックス後音声をwavファイルに保存
+            </summary>
+            <param name="fileName">wavファイルの保存先パス</param>
+            <param name="channel">チャンネル数(1または2)</param>
+        </member>
+        <member name="M:VSLIB.NET.VSProject.Finalize">
+            <summary>
+            デストラクタ
+            既にプロジェクトのメモリが解放されているとエラーになるので注意
+            </summary>
+        </member>
+    </members>
+</doc>

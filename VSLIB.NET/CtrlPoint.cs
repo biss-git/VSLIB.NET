@@ -5,11 +5,25 @@ using System.Xml.Schema;
 
 namespace VSLIB.NET
 {
+    /// <summary>
+    /// 制御点
+    /// </summary>
     public class CtrlPoint
     {
+        /// <summary>
+        /// 親アイテム
+        /// </summary>
         public readonly Item Item;
+        /// <summary>
+        /// 制御点番号
+        /// </summary>
         public readonly int Index;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="item">制御点の親アイテム</param>
+        /// <param name="index">制御点番号</param>
         public CtrlPoint(Item item, int index)
         {
             this.Item = item;
@@ -31,8 +45,6 @@ namespace VSLIB.NET
                 Item.Project.LastErrorCode = VSFunction.VslibSetCtrlPntInfoEx(Item.Project.hVsprj, Item.Index, Index, value);
             }
         }
-
-
 
         /// <summary>
         /// (R/-)編集前ダイナミクス[倍]

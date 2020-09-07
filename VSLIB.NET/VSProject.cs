@@ -6,6 +6,9 @@ using System.Text;
 
 namespace VSLIB.NET
 {
+    /// <summary>
+    /// VocalShifter プロジェクト
+    /// </summary>
     public class VSProject
     {
         /// <summary>
@@ -28,13 +31,20 @@ namespace VSLIB.NET
         /// </summary>
         public ItemList ItemList;
 
-
+        /// <summary>
+        /// 空のプロジェクト作成
+        /// 空のトラックが一つ生成される
+        /// </summary>
         public VSProject()
         {
             LastErrorCode = VSFunction.VslibCreateProject(out hVsprj);
             init();
         }
 
+        /// <summary>
+        /// .vshpファイルを開く
+        /// </summary>
+        /// <param name="fileName">.vshpファイルのパス</param>
         public VSProject(string fileName)
         {
             LastErrorCode = VSFunction.VslibOpenProject(out hVsprj, fileName);
@@ -63,7 +73,7 @@ namespace VSLIB.NET
         /// <summary>
         /// プロジェクト情報
         /// </summary>
-        public VSPRJINFO vsPrjInfo
+        public VSPRJINFO VsPrjInfo
         {
             get
             {
@@ -79,11 +89,11 @@ namespace VSLIB.NET
         /// <summary>
         /// (R/W)マスターボリューム[倍]
         /// </summary>
-        public double masterVolume
+        public double MasterVolume
         {
             get
             {
-                return vsPrjInfo.MasterVolume;
+                return VsPrjInfo.MasterVolume;
             }
             set
             {
@@ -91,7 +101,7 @@ namespace VSLIB.NET
                 if (LastErrorCode == 0)
                 {
                     info.MasterVolume = value;
-                    vsPrjInfo = info;
+                    VsPrjInfo = info;
                 }
             }
         }
@@ -99,11 +109,11 @@ namespace VSLIB.NET
         /// <summary>
         /// (R/W)サンプリング周波数[Hz]
         /// </summary>
-        public int sampFreq
+        public int SampFreq
         {
             get
             {
-                return vsPrjInfo.SampFreq;
+                return VsPrjInfo.SampFreq;
             }
             set
             {
@@ -111,11 +121,14 @@ namespace VSLIB.NET
                 if (LastErrorCode == 0)
                 {
                     info.SampFreq = value;
-                    vsPrjInfo = info;
+                    VsPrjInfo = info;
                 }
             }
         }
 
+        /// <summary>
+        /// ミックス後サンプル数
+        /// </summary>
         public int MixSample
         {
             get
@@ -125,8 +138,14 @@ namespace VSLIB.NET
             }
         }
 
-
-        public (int[] data1, int[] data2) ReadMixData(int channel, int index, int size)
+        /// <summary>
+        /// ミックス後の音声データ
+        /// </summary>
+        /// <param name="channel">チャンネル数(1または2)</param>
+        /// <param name="index">取得位置[サンプル]</param>
+        /// <param name="size">取得サイズ[サンプル]</param>
+        /// <returns></returns>
+        public (int[] dataL, int[] dataR) ReadMixData(int channel, int index, int size)
         {
             size = Math.Max(Math.Min(size, MixSample - index - 10000), 0);
             channel = Math.Max(Math.Min(channel, 2), 1);
@@ -139,37 +158,45 @@ namespace VSLIB.NET
             return BytesToInt16(bytes, channel);
         }
 
-        private (int[] data1, int[] data2) BytesToInt16(byte[] bytes, int channel)
+        private (int[] dataL, int[] dataR) BytesToInt16(byte[] bytes, int channel)
         {
-            int[] data1 = null;
-            int[] data2 = null;
+            int[] dataL = null;
+            int[] dataR = null;
             if (channel == 1)
             {
-                data1 = new int[bytes.Length / 2];
+                dataL = new int[bytes.Length / 2];
                 for (int i = 0; i < bytes.Length / 2; i++)
                 {
-                    data1[i] = BitConverter.ToInt16(bytes, 2 * i);
+                    dataL[i] = BitConverter.ToInt16(bytes, 2 * i);
                 }
             }
             else if (channel == 2)
             {
-                data1 = new int[bytes.Length / 4];
-                data2 = new int[bytes.Length / 4];
+                dataL = new int[bytes.Length / 4];
+                dataR = new int[bytes.Length / 4];
                 for (int i = 0; i < bytes.Length / 4; i++)
                 {
-                    data1[i] = BitConverter.ToInt16(bytes, 4 * i);
-                    data2[i] = BitConverter.ToInt16(bytes, 4 * i + 2);
+                    dataL[i] = BitConverter.ToInt16(bytes, 4 * i);
+                    dataR[i] = BitConverter.ToInt16(bytes, 4 * i + 2);
                 }
             }
-            return (data1, data2);
+            return (dataL, dataR);
         }
 
+        /// <summary>
+        /// ミックス後音声をwavファイルに保存
+        /// </summary>
+        /// <param name="fileName">wavファイルの保存先パス</param>
+        /// <param name="channel">チャンネル数(1または2)</param>
         public void ExportWaveFile(string fileName, int channel)
         {
             LastErrorCode = VSFunction.VslibExportWaveFile(hVsprj, fileName, 16, channel);
         }
 
-
+        /// <summary>
+        /// デストラクタ
+        /// 既にプロジェクトのメモリが解放されているとエラーになるので注意
+        /// </summary>
         ~VSProject()
         {
             VSFunction.VslibDeleteProject(hVsprj);

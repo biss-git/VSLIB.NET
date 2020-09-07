@@ -4,10 +4,13 @@ using System.Text;
 
 namespace VSLIB.NET
 {
+    /// <summary>
+    /// トラック
+    /// </summary>
     public class Track
     {
         /// <summary>
-        /// このトラックが属しているプロジェクト
+        /// 親プロジェクト
         /// </summary>
         public readonly VSProject Project;
 
@@ -16,6 +19,11 @@ namespace VSLIB.NET
         /// </summary>
         public readonly int Index;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="project">親プロジェクト</param>
+        /// <param name="index">トラック番号</param>
         public Track(VSProject project, int index)
         {
             this.Project = project;
@@ -23,7 +31,7 @@ namespace VSLIB.NET
         }
 
         /// <summary>
-        /// 上に移動する　インデックスが１減る
+        /// 上に移動する
         /// </summary>
         public void Up()
         {
@@ -31,7 +39,7 @@ namespace VSLIB.NET
         }
 
         /// <summary>
-        /// 下に移動する　インデックスが１増える
+        /// 下に移動する
         /// </summary>
         public void Down()
         {
@@ -40,6 +48,7 @@ namespace VSLIB.NET
 
         /// <summary>
         /// 破棄する
+        /// トラック内のアイテムも破棄される
         /// </summary>
         public void Dispose()
         {

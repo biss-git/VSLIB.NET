@@ -4,6 +4,9 @@ using System.Text;
 
 namespace VSLIB.NET
 {
+    /// <summary>
+    /// vslibに利用される定数
+    /// </summary>
     public static class Const
     {
         /// <summary>
@@ -21,6 +24,11 @@ namespace VSLIB.NET
 
     }
 
+    /// <summary>
+    /// エラーコード
+    /// VSProjectの
+    /// LastErrorCodeに対応する
+    /// </summary>
     public enum ERROR_CODE
     {
         /// <summary>
@@ -61,6 +69,9 @@ namespace VSLIB.NET
         VSERR_NOMEM = 8,
     }
 
+    /// <summary>
+    /// 合成のモード
+    /// </summary>
     public enum SYNTHMODE
     {
         /// <summary>
@@ -75,29 +86,6 @@ namespace VSLIB.NET
         /// 和音　0
         /// </summary>
         SYNTHMODE_P = 2,
-    }
-
-    /// <summary>
-    /// ASAnalyzer チャンネル
-    /// </summary>
-    public enum AS_CH
-    {
-        AS_CH_LPR = 0,
-        AS_CH_LMR = 1,
-        AS_CH_L = 2,
-        AS_CH_R = 3,
-    }
-
-    /// <summary>
-    /// ASAnalyze エラーコード
-    /// </summary>
-    public enum AS_ERR
-    {
-        AS_ERR_NOERR = 0,
-        AS_ERR_NOMEM = 1,
-        AS_ERR_BADPRM = 2,
-        AS_ERR_OPEN = 3,
-        AS_ERR_FROMAT = 4,
     }
 
 }

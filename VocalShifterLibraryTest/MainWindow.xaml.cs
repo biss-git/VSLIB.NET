@@ -43,8 +43,8 @@ namespace VocalShifterLibraryTest
                 return;
             }
             projectTextBox.Text += Environment.NewLine;
-            projectTextBox.Text += "マスターボリューム：" + project.vsPrjInfo.MasterVolume + Environment.NewLine;
-            projectTextBox.Text += "サンプリング周波数：" + project.vsPrjInfo.SampFreq + Environment.NewLine;
+            projectTextBox.Text += "マスターボリューム：" + project.VsPrjInfo.MasterVolume + Environment.NewLine;
+            projectTextBox.Text += "サンプリング周波数：" + project.VsPrjInfo.SampFreq + Environment.NewLine;
             projectTextBox.Text += Environment.NewLine;
             projectTextBox.Text += "トラック数：" + project.TrackList.Length + Environment.NewLine;
             projectTextBox.Text += "アイテム数：" + project.ItemList.Length + Environment.NewLine;
@@ -161,12 +161,10 @@ namespace VocalShifterLibraryTest
         private void SetProjectInfo(object sender, RoutedEventArgs e)
         {
             if (project == null) { NoProjectError(); return; }
-            VSPRJINFO vsPrjInfo;
-            vsPrjInfo.MasterVolume = 0.5;
-            vsPrjInfo.SampFreq = 80000;
-            project.vsPrjInfo = vsPrjInfo;
+            project.MasterVolume = 0.5;
+            project.SampFreq = 80000;
             outputLabel.Content = "プロジェクト情報を設定しました。error_code=" + project?.LastErrorCode;
-            project.sampFreq = 16000;
+            project.SampFreq = 16000;
             ShowProjectStatus();
         }
 
@@ -238,13 +236,11 @@ namespace VocalShifterLibraryTest
         private void SetTrackInfo(object sender, RoutedEventArgs e)
         {
             if (project == null) { NoProjectError(); return; }
-            VSTRACKINFO info;
-            info.volume = 0.5;
-            info.pan = 0.6;
-            info.invPhaseFlg = 1;
-            info.soloFlg = 1;
-            info.muteFlg = 1;
-            project.TrackList[0].Info = info;
+            project.TrackList[0].Volume = 0.5;
+            project.TrackList[0].Pan = 0.6;
+            project.TrackList[0].InvPhaseFlg = true;
+            project.TrackList[0].SoloFlg = true;
+            project.TrackList[0].MuteFlg = true;
             outputLabel.Content = "トラック情報を設定しました。error_code=" + project?.LastErrorCode;
             ShowProjectStatus();
         }
@@ -343,7 +339,7 @@ namespace VocalShifterLibraryTest
         private void GetMixData(object sender, RoutedEventArgs e)
         {
             if (project == null) { NoProjectError(); return; }
-            (int[] data1, int[] data2) = project.ReadMixData(1, 0, 1000000);
+            (int[] dataL, int[] dataR) = project.ReadMixData(1, 0, 1000000);
             outputLabel.Content = "ミックス後の波形を取得しました。error_code=" + project?.LastErrorCode;
             ShowProjectStatus(); // 配列の表示は大変なので、ここでブレークポイントを張って、data1の中身を確認する
         }
@@ -469,12 +465,12 @@ namespace VocalShifterLibraryTest
             projectMarged.ItemList.Clear();
             projectMarged.TrackList.Clear();
 
-            if (project1.sampFreq != project2.sampFreq)
+            if (project1.SampFreq != project2.SampFreq)
             {
                 outputLabel.Content = "プロジェクトのサンプリング周波数が異なります。";
                 return;
             }
-            projectMarged.sampFreq = project1.sampFreq;
+            projectMarged.SampFreq = project1.SampFreq;
 
             for (int i = 0; i < project1.TrackList.Length; i++)
             {
