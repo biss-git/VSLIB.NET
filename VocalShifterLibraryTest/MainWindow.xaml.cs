@@ -442,13 +442,13 @@ namespace VocalShifterLibraryTest
             VSProject project1 = new VSProject((string)ProjectName1.Content);
             if (project1.LastErrorCode != 0)
             {
-                outputLabel.Content = "１つ目のプロジェクトが不正です。error_code=" + project?.LastErrorCode;
+                outputLabel.Content = "１つ目のプロジェクトが不正です。error_code=" + project1.LastErrorCode;
                 return;
             }
             VSProject project2 = new VSProject((string)ProjectName2.Content);
             if (project2.LastErrorCode != 0)
             {
-                outputLabel.Content = "２つ目のプロジェクトが不正です。error_code=" + project?.LastErrorCode;
+                outputLabel.Content = "２つ目のプロジェクトが不正です。error_code=" + project2.LastErrorCode;
                 return;
             }
             if (project1.TrackList.Length + project2.TrackList.Length > Const.VSLIB_MAX_TRACK)
